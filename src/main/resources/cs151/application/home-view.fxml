@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="cs151.application.HomeController"
+      alignment="CENTER"
+      spacing="18"
+      styleClass="page">
+
+    <Label text="Team 2 Study App" styleClass="home-title"/>
+    <Label text="Create a new study deck" styleClass="home-subtitle"/>
+    <Button text="Define A New Deck"
+            onAction="#handleDefineDeck"
+            styleClass="primary-button"/>
+
+    <Button text="Define Deck" onAction="#handleDefineDeck" />
+    <Button text="View Decks" onAction="#handleViewDecks" />
+</VBox>
+

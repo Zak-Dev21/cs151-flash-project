@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="cs151.application.DefineDeckController"
+      alignment="CENTER"
+      spacing="18"
+      styleClass="page">
+
+    <VBox spacing="10" styleClass="form-card">
+        <Label text="Define Deck" styleClass="title"/>
+
+        <Label text="Deck Name" styleClass="field-label"/>
+        <TextField fx:id="deckNameField" prefWidth="360"/>
+
+        <Label text="Description" styleClass="field-label"/>
+        <TextArea fx:id="descriptionArea" prefWidth="360" prefHeight="140" wrapText="true"/>
+
+        <Label text="Deck Color" styleClass="field-label"/>
+        <ColorPicker fx:id="deckColorPicker"/>
+
+        <Button text="Save Deck" onAction="#handleSaveDeck" styleClass="primary-button"/>
+        <Button text="Back" onAction="#handleBackHome" styleClass="secondary-button"/>
+
+        <Label fx:id="statusLabel" styleClass="status-label"/>
+    </VBox>
+</VBox>

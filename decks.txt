@@ -1,0 +1,6 @@
+CS 151 - OBJECT ORIENTED DESIGN|CS upper based in Java where its all about OOP and building program using concepts.|0x008000ff
+PHIL 134 - COMPUTER ETHICS|Class about computer ethics used to fulfill upper div ethics requirement for CS majors.|0x4d4d4dff
+cs 151|object oriented design|0xffffffff
+phil 134|computer ethics|0xffffffff
+cs 100w|technical writing|0xffffffff
+kin 51a|beginning aikido|0xffffffff
