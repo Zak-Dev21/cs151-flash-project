@@ -4,3 +4,8 @@ cs 151|object oriented design|0xffffffff
 phil 134|computer ethics|0xffffffff
 cs 100w|technical writing|0xffffffff
 kin 51a|beginning aikido|0xffffffff
+CS 151|Object Oriented Design in Java (upper division)|0xffffffff
+phil 134|computer ethics (upper division)|0xffffffff
+cs 154|Formal languages and computability (upper division)|0xffffffff
+kin 51a|beginner aikido (physical education)|0xffffffff
+dodo|sleeping is the best therapy and relaxation of the brain|0xffffffff

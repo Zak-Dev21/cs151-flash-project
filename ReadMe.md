@@ -1,113 +1,31 @@
-# CS151 Flashcard Application (Milestone 0.4)
+# Name of application: Flashcards
 
-A JavaFX-based flashcard application that allows users to create, manage, and study decks of flashcards. This project is developed as part of CS151 coursework.
+# Who did What
 
----
+# Version: 0.4
+1. Rohan Poosala: Implemented Define Deck save functionality and file storage (Deck + Repository)
+2. Zakaria Bouaddou: Implemented Home page navigation and controller logic
+3. Esteban Madrigal: Implemented Deck List page with TableView and sorting (A–Z, case-insensitive)
 
-## 📌 Project Overview
-The application provides an interactive interface for users to:
-- Create flashcard decks
-- Add, edit, and delete flashcards
-- Navigate between different views
-- Persist data locally
+# Version: 0.2
+1. Rohan Poosala: UI design and layout
+2. Zakaria Bouaddou: Homepage implementation
+3. Esteban Madrigal: Deck page implementation
 
----
+# Technical-Spec
+1. Rohan Poosala: Designed data model (Deck class and file storage structure)
+2. Zakaria Bouaddou: Managed controller logic and application flow
+3. Esteban Madrigal: Created UML diagrams and integration design
 
-## 🎯 Milestone 0.4 Goals
-- Implement core UI navigation (Home, Define Deck, Deck List)
-- Establish MVC-style structure
-- Integrate JavaFX with FXML views
-- Implement basic data persistence (text file storage)
-- Ensure application runs via Maven
+# Functional-Spec
+1. Rohan Poosala: Defined deck creation behavior and validation
+2. Zakaria Bouaddou: Designed navigation between pages
+3. Esteban Madrigal: Created UI mockups and layout design
 
----
-
-## 🛠️ Technologies Used
-- Java
-- JavaFX
-- Maven
-- FXML (UI layout)
-- CSS (styling)
-
----
-
-## 📂 Project Structure
-```
-src/main/java/cs151/application
-  ├── Main.java
-  ├── HomeController.java
-  ├── DeckListController.java
-  ├── DefineDeckController.java
-  ├── Deck.java
-  ├── DeckFileRepository.java
-
-src/main/resources/cs151/application
-  ├── home-view.fxml
-  ├── deck-list-view.fxml
-  ├── define-deck-view.fxml
-  ├── style.css
-
-pom.xml
-```
-
----
-
-## 👥 Team Roles
-
-| Name        | Role                | Responsibilities |
-|------------|---------------------|------------------|
-| Zakaria Bouaddou | Project Lead / Dev  | Core logic, integration, GitHub management, PM duties for submission |
-| Roohan Poosala | UI Developer / Data Model | JavaFX views, styling (FXML, CSS), Data modeling |
-| Esteban Madrigal | Backend Developer   | Data handling, file persistence.implementation |
-
----
-
-## ▶️ How to Run
-
-### 1. Clone the repository
-```
-git clone https://github.com/Zak-Dev21/cs151-flash-project.git
-cd cs151-flash-project
-```
-
-### 2. Build project
-```
-mvn clean install
-```
-
-### 3. Run application
-```
-mvn javafx:run
-```
-
----
-
-## 📄 Features Implemented (0.4)
-- Navigation between views
-- Deck creation UI
-- Deck listing UI
-- Basic file storage (`decks.txt`)
-- MVC separation (controllers, models, views)
-
----
-
-## ⚠️ Known Limitations
-- No advanced validation yet
-- Limited UI polish
-- File storage is basic (no database)
-
----
-
-## 🚀 Future Improvements
-- Add editing and deletion of decks
-- Improve UI/UX
-- Add search/filter functionality
-- Replace file storage with database
-
----
-
-## 👤 Author(s)
-- Zakaria Bouaddou
-- Rohal Poosala
-- Esteban Madrigal
-
+# Any other instruction that users need to know:
+- Run the project using Maven: mvn clean javafx:run
+- Use "Define Deck" to create and save a deck
+- Use "View Decks" to see all saved decks in a table
+- Decks are stored locally in a file (decks.txt)
+- Decks are displayed in alphabetical order (case-insensitive)
+- All pages include a Back button for navigation
