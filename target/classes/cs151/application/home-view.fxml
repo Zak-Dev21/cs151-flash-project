@@ -14,9 +14,9 @@
     <Button text="Define A New Deck"
             onAction="#handleDefineDeck"
             styleClass="primary-button"/>
-
-    <Button text="Define Deck" onAction="#handleDefineDeck" />
-    <Button text="View Decks" onAction="#handleViewDecks" />
+    <Button text="View Decks"
+            onAction="#handleViewDecks"
+            styleClass="secondary-button"/>
     <Button text="Define Flashcard"
             onAction="#handleDefineFlashcard"
             styleClass="primary-button"/>
