@@ -9,11 +9,18 @@ public class Deck {
     public Deck() {
     }
 
-    public Deck(String name, String description, String color, String createdAt ) {
+    public Deck(String name, String description, String color) {
         this.name = name;
         this.description = description;
         this.color = color;
         this.createdAt = "";
+    }
+
+    public Deck(String name, String description, String color, String createdAt) {
+        this.name = name;
+        this.description = description;
+        this.color = color;
+        this.createdAt = createdAt;
     }
 
     public String getName() {
