@@ -26,6 +26,6 @@
 - Run the project using Maven: mvn clean javafx:run
 - Use "Define Deck" to create and save a deck
 - Use "View Decks" to see all saved decks in a table
-- Decks are stored locally in a file (decks.txt)
-- Decks are displayed in alphabetical order (case-insensitive)
+- Decks are stored locally in an SQLite database (flashcards.db)
+- Decks are displayed by most recent creation time first
 - All pages include a Back button for navigation
