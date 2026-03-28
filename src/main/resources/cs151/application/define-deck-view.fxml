@@ -11,9 +11,9 @@
       styleClass="page">
 
     <VBox spacing="10" styleClass="form-card">
-        <Label text="Define Deck" styleClass="title"/>
+        <Label text="Define Deck1" styleClass="title"/>
 
-        <Label text="Deck Name" styleClass="field-label"/>
+        <Label text="Deck1 Name" styleClass="field-label"/>
         <TextField fx:id="deckNameField" prefWidth="360"/>
 
         <Label text="Description" styleClass="field-label"/>
@@ -22,7 +22,7 @@
         <Label text="Deck Color" styleClass="field-label"/>
         <ColorPicker fx:id="deckColorPicker"/>
 
-        <Button text="Save Deck" onAction="#handleSaveDeck" styleClass="primary-button"/>
+        <Button text="Save Deck1" onAction="#handleSaveDeck" styleClass="primary-button"/>
         <Button text="Back" onAction="#handleBackHome" styleClass="secondary-button"/>
 
         <Label fx:id="statusLabel" styleClass="status-label"/>

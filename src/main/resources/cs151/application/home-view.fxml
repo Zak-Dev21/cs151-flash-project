@@ -10,12 +10,12 @@
       styleClass="page">
 
     <Label text="Team 2 Study App" styleClass="home-title"/>
-    <Label text="Create a new study deck" styleClass="home-subtitle"/>
-    <Button text="Define A New Deck"
+    <Label text="Create a new study deck1" styleClass="home-subtitle"/>
+    <Button text="Define A New Deck1"
             onAction="#handleDefineDeck"
             styleClass="primary-button"/>
 
-    <Button text="Define Deck" onAction="#handleDefineDeck" />
-    <Button text="View Decks" onAction="#handleViewDecks" />
+    <Button text="Define Deck1" onAction="#handleDefineDeck" />
+    <Button text="View Decks1" onAction="#handleViewDecks" />
 </VBox>
 
