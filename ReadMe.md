@@ -4,7 +4,7 @@
 
 # Version: 0.5
 1. Zakaria Bouaddou: Migrated deck storage to SQLite, updated controllers to use database, and implemented flashcard backend (model + repository)
-2. Esteban Madrigal: To implement flashcard controllers and UI integration
+2. Esteban Madrigal: Implemented flashcard controllers and UI integration
 3. Rohan Poosala: Minor UI updates and validation improvements
 
 
@@ -33,5 +33,5 @@
 - Use "Define Deck" to create and save a deck
 - Use "View Decks" to see all saved decks in a table
 - Decks are stored locally in an SQLite database (flashcards.db)
-- Decks are displayed by most recent creation time first
+- Decks are displayed alphabetically by name
 - All pages include a Back button for navigation

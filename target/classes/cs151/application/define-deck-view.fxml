@@ -13,7 +13,7 @@
     <VBox spacing="10" styleClass="form-card">
         <Label text="Define Deck" styleClass="title"/>
 
-        <Label text="Deck1 Name" styleClass="field-label"/>
+        <Label text="Deck Name" styleClass="field-label"/>
         <TextField fx:id="deckNameField" prefWidth="360"/>
 
         <Label text="Description" styleClass="field-label"/>
