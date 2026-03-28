@@ -17,7 +17,7 @@ public class FlashcardDatabaseRepository {
     /**
      * Saves a flashcard into the database.
      */
-    public void saveFlashcard(FlashCard flashcard) throws SQLException {
+    public void saveFlashcard(Flashcard flashcard) throws SQLException {
         String sql = "INSERT INTO flashcards(question, answer, deck_name, created_at) VALUES (?, ?, ?, ?)";
 
         try (Connection connection = DatabaseManager.getConnection();
@@ -37,8 +37,8 @@ public class FlashcardDatabaseRepository {
      * Results are ordered by most recent first.
      */
 
-    public List<FlashCard> getFlashcardsByDeck(String deckName) throws SQLException {
-        List<FlashCard> flashcards = new ArrayList<>();
+    public List<Flashcard> getFlashcardsByDeck(String deckName) throws SQLException {
+        List<Flashcard> flashcards = new ArrayList<>();
 
         String sql = "SELECT question, answer, deck_name, created_at " +
                 "FROM flashcards WHERE deck_name = ? ORDER BY created_at DESC";
@@ -50,7 +50,7 @@ public class FlashcardDatabaseRepository {
 
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
-                    FlashCard flashcard = new FlashCard(
+                    Flashcard flashcard = new Flashcard(
                             resultSet.getString("question"),
                             resultSet.getString("answer"),
                             resultSet.getString("deck_name"),
