@@ -7,11 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Data Access Layer (DAL) for flashcards.
- * Handles all database operations related to flashcards using SQLite.
- */
-
 public class FlashcardDatabaseRepository {
 
     /**
@@ -36,7 +31,6 @@ public class FlashcardDatabaseRepository {
      * Retrieves all flashcards for a given deck.
      * Results are ordered by most recent first.
      */
-
     public List<Flashcard> getFlashcardsByDeck(String deckName) throws SQLException {
         List<Flashcard> flashcards = new ArrayList<>();
 
@@ -58,6 +52,35 @@ public class FlashcardDatabaseRepository {
                     );
                     flashcards.add(flashcard);
                 }
+            }
+        }
+
+        return flashcards;
+    }
+
+    /**
+     * Retrieves all flashcards in the database.
+     * Results are ordered by most recent first so the newest
+     * flashcards appear at the top of the TableView.
+     */
+    public List<Flashcard> getAllFlashcards() throws SQLException {
+        List<Flashcard> flashcards = new ArrayList<>();
+
+        String sql = "SELECT question, answer, deck_name, created_at " +
+                "FROM flashcards ORDER BY created_at DESC";
+
+        try (Connection connection = DatabaseManager.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql);
+             ResultSet resultSet = statement.executeQuery()) {
+
+            while (resultSet.next()) {
+                Flashcard flashcard = new Flashcard(
+                        resultSet.getString("question"),
+                        resultSet.getString("answer"),
+                        resultSet.getString("deck_name"),
+                        resultSet.getString("created_at")
+                );
+                flashcards.add(flashcard);
             }
         }
 

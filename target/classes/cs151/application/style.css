@@ -1,0 +1,126 @@
+.root {
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+    -fx-background-color: #141019;
+}
+
+.page {
+    -fx-alignment: center;
+    -fx-spacing: 20;
+    -fx-padding: 30;
+}
+
+.home-title {
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #f8d7e6;
+}
+
+.home-subtitle {
+    -fx-font-size: 15px;
+    -fx-text-fill: #d8b7c8;
+}
+
+.form-card {
+    -fx-background-color: #211824;
+    -fx-background-radius: 20;
+    -fx-padding: 24;
+    -fx-spacing: 12;
+    -fx-max-width: 440;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.35), 18, 0.15, 0, 4);
+}
+
+.title {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffd6e7;
+}
+
+.field-label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #f3c1d7;
+}
+
+.text-field,
+.text-area,
+.color-picker {
+    -fx-background-color: #2a1f2f;
+    -fx-border-color: #5b4453;
+    -fx-border-radius: 12;
+    -fx-background-radius: 12;
+    -fx-font-size: 14px;
+    -fx-text-fill: #fbe7f0;
+}
+
+.text-field {
+    -fx-padding: 10 12 10 12;
+}
+
+.text-area .content {
+    -fx-background-color: #2a1f2f;
+    -fx-background-radius: 12;
+}
+
+.text-field:focused,
+.text-area:focused,
+.color-picker:focused {
+    -fx-border-color: #f49ac2;
+    -fx-background-color: #332636;
+}
+
+.text-area:focused .content {
+    -fx-background-color: #332636;
+}
+
+.primary-button {
+    -fx-background-color: #f49ac2;
+    -fx-text-fill: #2a1020;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 12;
+    -fx-padding: 10 18 10 18;
+    -fx-cursor: hand;
+}
+
+.primary-button:hover {
+    -fx-background-color: #f7aacd;
+}
+
+.secondary-button {
+    -fx-background-color: #3a2b40;
+    -fx-text-fill: #f8d7e6;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 12;
+    -fx-padding: 10 18 10 18;
+    -fx-cursor: hand;
+}
+
+.secondary-button:hover {
+    -fx-background-color: #4a3651;
+}
+
+.status-label {
+    -fx-font-size: 13px;
+    -fx-text-fill: #ff8fb1;
+}
+.color-picker {
+    -fx-padding: 2 6 2 6;
+}
+
+.color-picker .label {
+    -fx-text-fill: #fbe7f0;
+}
+
+.color-picker .arrow-button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 10;
+}
+
+.color-picker .arrow {
+    -fx-background-color: #f49ac2;
+}
+
+.color-picker:hover {
+    -fx-border-color: #f49ac2;
+}
