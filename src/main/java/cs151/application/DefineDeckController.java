@@ -52,7 +52,7 @@ public class DefineDeckController {
             return;
         }
 
-        // Store when the deck was created
+        // Store creation time so decks can be sorted later
         String createdAt = LocalDateTime.now().toString();
 
         Deck deck = new Deck(deckName, description, color, createdAt);
