@@ -2,6 +2,12 @@
 
 # Who did What
 
+# Version: 0.5
+1. Zakaria Bouaddou: Migrated deck storage to SQLite, updated controllers to use database, and implemented flashcard backend (model + repository)
+2. Esteban Madrigal: To implement flashcard controllers and UI integration
+3. Rohan Poosala: Minor UI updates and validation improvements
+
+
 # Version: 0.4
 1. Rohan Poosala: Implemented Define Deck save functionality and file storage (Deck + Repository)
 2. Zakaria Bouaddou: Implemented Home page navigation and controller logic
