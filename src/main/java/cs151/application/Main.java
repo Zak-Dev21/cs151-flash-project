@@ -12,6 +12,7 @@ import java.io.IOException;
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
+        // Ensure database tables exist before launching the UI
         DatabaseManager.initializeDatabase();
 
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("home-view.fxml"));
