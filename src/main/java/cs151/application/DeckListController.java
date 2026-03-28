@@ -12,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
+import java.sql.SQLException;
 
 import java.io.IOException;
 import java.util.List;
@@ -33,7 +34,8 @@ public class DeckListController {
     @FXML
     private Label statusLabel;
 
-    private final DeckFileRepository repository = new DeckFileRepository();
+    // Use SQLite so deck list matches the current save flow
+    private final DeckDatabaseRepository repository = new DeckDatabaseRepository();
 
     @FXML
     public void initialize() {
@@ -46,6 +48,7 @@ public class DeckListController {
         colorColumn.setCellValueFactory(cellData ->
                 new SimpleStringProperty(cellData.getValue().getColor()));
 
+        // Loads decks from SQLite and displays them in the table
         loadDecks();
     }
 
@@ -60,7 +63,7 @@ public class DeckListController {
             } else {
                 statusLabel.setText("Decks loaded successfully.");
             }
-        } catch (IOException e) {
+        } catch (SQLException e) {
             statusLabel.setText("Error loading decks.");
             e.printStackTrace();
         }
