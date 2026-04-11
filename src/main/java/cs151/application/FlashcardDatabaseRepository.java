@@ -45,6 +45,7 @@ public class FlashcardDatabaseRepository {
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
                     Flashcard flashcard = new Flashcard(
+                            resultSet.getInt("id"),
                             resultSet.getString("question"),
                             resultSet.getString("answer"),
                             resultSet.getString("deck_name"),

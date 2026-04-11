@@ -5,6 +5,7 @@ package cs151.application;
  * Each flashcard stores a question, answer, deck reference, and creation timestamp.
   */
 public class Flashcard {
+    private int id;
     private String question;
     private String answer;
     private String deckName;
@@ -18,12 +19,17 @@ public class Flashcard {
      * Constructs a flashcard with all required fields.
      */
 
-    public Flashcard(String question, String answer, String deckName, String createdAt) {
+    public Flashcard(int id, String question, String answer, String deckName, String createdAt) {
         this.question = question;
         this.answer = answer;
         this.deckName = deckName;
         this.createdAt = createdAt;
+        this.id = id;
     }
+
+    public int getId() { return id; }
+
+    public void setId(int id) { this.id = id; }
 
     public String getQuestion() {
         return question;
