@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -22,7 +23,12 @@
 
         <Label text="Search Flashcards" styleClass="title"/>
 
-        <TextField fx:id="searchField" promptText="Search by question, answer, or deck..."
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <Label text="Deck:" styleClass="field-label"/>
+            <ComboBox fx:id="deckFilter" promptText="All Decks" prefWidth="220" onAction="#handleDeckSelected"/>
+        </HBox>
+
+        <TextField fx:id="searchField" promptText="Filter by question or answer..."
                    styleClass="text-field" maxWidth="Infinity"
                    onAction="#handleSearch"/>
 
@@ -34,7 +40,7 @@
 
         <Label text="Double-click a row to edit" styleClass="status-label"/>
 
-        <TableView fx:id="flashcardTable" prefWidth="900" prefHeight="380">
+        <TableView fx:id="flashcardTable" prefWidth="900" prefHeight="360">
             <columns>
                 <TableColumn fx:id="idColumn" text="ID" prefWidth="50"/>
                 <TableColumn fx:id="questionColumn" text="Question" prefWidth="230"/>

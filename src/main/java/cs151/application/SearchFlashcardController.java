@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -17,9 +18,13 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class SearchFlashcardController {
 
+    private static final String ALL_DECKS = "All Decks";
+
+    @FXML private ComboBox<String> deckFilter;
     @FXML private TextField searchField;
     @FXML private TableView<Flashcard> flashcardTable;
     @FXML private TableColumn<Flashcard, Number> idColumn;
@@ -29,7 +34,8 @@ public class SearchFlashcardController {
     @FXML private TableColumn<Flashcard, String> createdAtColumn;
     @FXML private Label statusLabel;
 
-    private final FlashcardDatabaseRepository repository = new FlashcardDatabaseRepository();
+    private final FlashcardDatabaseRepository flashcardRepo = new FlashcardDatabaseRepository();
+    private final DeckDatabaseRepository deckRepo = new DeckDatabaseRepository();
 
     @FXML
     public void initialize() {
@@ -38,6 +44,8 @@ public class SearchFlashcardController {
         answerColumn.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().getAnswer()));
         deckColumn.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().getDeckName()));
         createdAtColumn.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().getCreatedAt()));
+
+        loadDeckFilter();
 
         flashcardTable.setOnMouseClicked(e -> {
             if (e.getClickCount() == 2) {
@@ -52,7 +60,68 @@ public class SearchFlashcardController {
             }
         });
 
-        loadAllFlashcards();
+        loadFiltered();
+    }
+
+    private void loadDeckFilter() {
+        deckFilter.getItems().clear();
+        deckFilter.getItems().add(ALL_DECKS);
+        try {
+            List<Deck> decks = deckRepo.getAllDecks();
+            for (Deck d : decks) {
+                deckFilter.getItems().add(d.getName());
+            }
+        } catch (SQLException e) {
+            statusLabel.setText("Error loading decks.");
+        }
+        deckFilter.setValue(ALL_DECKS);
+    }
+
+    @FXML
+    public void handleDeckSelected() {
+        searchField.clear();
+        loadFiltered();
+    }
+
+    @FXML
+    public void handleSearch() {
+        loadFiltered();
+    }
+
+    @FXML
+    public void handleShowAll() {
+        deckFilter.setValue(ALL_DECKS);
+        searchField.clear();
+        loadFiltered();
+    }
+
+    private void loadFiltered() {
+        String selectedDeck = deckFilter.getValue();
+        String query = searchField.getText().trim().toLowerCase();
+
+        try {
+            List<Flashcard> base;
+            if (selectedDeck == null || selectedDeck.equals(ALL_DECKS)) {
+                base = flashcardRepo.getAllFlashcards();
+            } else {
+                base = flashcardRepo.getFlashcardsByDeck(selectedDeck);
+            }
+
+            List<Flashcard> results = query.isEmpty() ? base : base.stream()
+                    .filter(f -> f.getQuestion().toLowerCase().contains(query)
+                              || f.getAnswer().toLowerCase().contains(query))
+                    .collect(Collectors.toList());
+
+            flashcardTable.setItems(FXCollections.observableArrayList(results));
+
+            if (results.isEmpty()) {
+                statusLabel.setText("No flashcards found.");
+            } else {
+                statusLabel.setText(results.size() + " flashcard(s) shown.");
+            }
+        } catch (SQLException e) {
+            statusLabel.setText("Error loading flashcards.");
+        }
     }
 
     private void openEditView(Flashcard flashcard) throws IOException {
@@ -67,26 +136,6 @@ public class SearchFlashcardController {
     }
 
     @FXML
-    public void handleSearch() {
-        String query = searchField.getText().trim();
-        try {
-            List<Flashcard> results;
-            if (query.isEmpty()) {
-                results = repository.getAllFlashcards();
-                statusLabel.setText("Showing all flashcards.");
-            } else {
-                results = repository.searchFlashcards(query);
-                statusLabel.setText(results.isEmpty()
-                        ? "No matching flashcards found."
-                        : "Found " + results.size() + " matching flashcard(s).");
-            }
-            flashcardTable.setItems(FXCollections.observableArrayList(results));
-        } catch (SQLException e) {
-            statusLabel.setText("Error searching flashcards.");
-        }
-    }
-
-    @FXML
     public void handleDeleteSelected() {
         Flashcard selected = flashcardTable.getSelectionModel().getSelectedItem();
         if (selected == null) {
@@ -94,27 +143,11 @@ public class SearchFlashcardController {
             return;
         }
         try {
-            repository.deleteFlashcardById(selected.getId());
+            flashcardRepo.deleteFlashcardById(selected.getId());
             statusLabel.setText("Flashcard deleted successfully.");
-            handleSearch();
+            loadFiltered();
         } catch (SQLException e) {
             statusLabel.setText("Error deleting flashcard.");
-        }
-    }
-
-    @FXML
-    public void handleShowAll() {
-        searchField.clear();
-        loadAllFlashcards();
-    }
-
-    private void loadAllFlashcards() {
-        try {
-            List<Flashcard> flashcards = repository.getAllFlashcards();
-            flashcardTable.setItems(FXCollections.observableArrayList(flashcards));
-            statusLabel.setText(flashcards.isEmpty() ? "No flashcards found." : "Flashcards loaded successfully.");
-        } catch (SQLException e) {
-            statusLabel.setText("Error loading flashcards.");
         }
     }
 
