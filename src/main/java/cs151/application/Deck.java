@@ -1,6 +1,7 @@
 package cs151.application;
 
 public class Deck {
+    private int id;
     private String name;
     private String description;
     private String color;
@@ -22,6 +23,10 @@ public class Deck {
         this.color = color;
         this.createdAt = createdAt;
     }
+
+    public int getId() { return id; }
+
+    public void setId(int id) { this.id = id; }
 
     public String getName() {
         return name;

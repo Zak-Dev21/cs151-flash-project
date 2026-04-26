@@ -5,28 +5,38 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" spacing="15.0"
+<VBox alignment="CENTER" spacing="20" stylesheets="@style.css"
       xmlns="http://javafx.com/javafx/21"
       xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="cs151.application.DeckListController">
+      fx:controller="cs151.application.DeckListController"
+      styleClass="page">
 
-    <padding>
-        <Insets top="30" right="30" bottom="30" left="30"/>
-    </padding>
+    <VBox alignment="CENTER_LEFT" spacing="12" styleClass="form-card" maxWidth="760">
+        <padding>
+            <Insets top="24" right="24" bottom="24" left="24"/>
+        </padding>
 
-    <Label text="All Decks" />
+        <Label text="All Decks" styleClass="title"/>
 
-    <TableView fx:id="deckTable" prefHeight="400" prefWidth="700">
-        <columns>
-            <TableColumn fx:id="nameColumn" prefWidth="180" text="Deck Name" />
-            <TableColumn fx:id="descriptionColumn" prefWidth="350" text="Description" />
-            <TableColumn fx:id="colorColumn" prefWidth="150" text="Color" />
-        </columns>
-    </TableView>
+        <Label text="Double-click a row to edit" styleClass="status-label"/>
 
-    <Label fx:id="statusLabel" text="" />
+        <TableView fx:id="deckTable" prefHeight="400" prefWidth="700">
+            <columns>
+                <TableColumn fx:id="nameColumn" prefWidth="180" text="Deck Name"/>
+                <TableColumn fx:id="descriptionColumn" prefWidth="350" text="Description"/>
+                <TableColumn fx:id="colorColumn" prefWidth="150" text="Color"/>
+            </columns>
+        </TableView>
 
-    <Button text="Back" onAction="#handleBackHome" />
+        <Label fx:id="statusLabel" text=""/>
+
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <Button text="Delete Selected" onAction="#handleDeleteSelected" styleClass="secondary-button"/>
+            <Button text="Back" onAction="#handleBackHome" styleClass="secondary-button"/>
+        </HBox>
+    </VBox>
+
 </VBox>

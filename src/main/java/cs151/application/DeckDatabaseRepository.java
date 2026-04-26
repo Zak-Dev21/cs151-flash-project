@@ -7,14 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Handles saving and loading Deck data using SQLite.
- */
 public class DeckDatabaseRepository {
 
-    /**
-     * Saves a deck into the database.
-     */
     public void saveDeck(Deck deck) throws SQLException {
         String sql = "INSERT INTO decks(name, description, color, created_at) VALUES (?, ?, ?, ?)";
 
@@ -30,14 +24,10 @@ public class DeckDatabaseRepository {
         }
     }
 
-    /**
-     * Retrieves all decks sorted by newest first.
-     */
     public List<Deck> getAllDecks() throws SQLException {
         List<Deck> decks = new ArrayList<>();
 
-        // ORDER BY created_at DESC ensures most recent first
-        String sql = "SELECT name, description, color, created_at FROM decks ORDER BY created_at DESC";
+        String sql = "SELECT id, name, description, color, created_at FROM decks ORDER BY created_at DESC";
 
         try (Connection connection = DatabaseManager.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql);
@@ -50,10 +40,49 @@ public class DeckDatabaseRepository {
                         resultSet.getString("color"),
                         resultSet.getString("created_at")
                 );
+                deck.setId(resultSet.getInt("id"));
                 decks.add(deck);
             }
         }
 
         return decks;
+    }
+
+    public void updateDeck(Deck deck) throws SQLException {
+        String sql = "UPDATE decks SET name = ?, description = ?, color = ? WHERE id = ?";
+
+        try (Connection connection = DatabaseManager.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setString(1, deck.getName());
+            statement.setString(2, deck.getDescription());
+            statement.setString(3, deck.getColor());
+            statement.setInt(4, deck.getId());
+
+            statement.executeUpdate();
+        }
+    }
+
+    public void deleteDeck(int id) throws SQLException {
+        String deleteDeckSql = "DELETE FROM decks WHERE id = ?";
+        String deleteFlashcardsSql = "DELETE FROM flashcards WHERE deck_name = (SELECT name FROM decks WHERE id = ?)";
+
+        try (Connection connection = DatabaseManager.getConnection()) {
+            connection.setAutoCommit(false);
+            try {
+                try (PreparedStatement ps = connection.prepareStatement(deleteFlashcardsSql)) {
+                    ps.setInt(1, id);
+                    ps.executeUpdate();
+                }
+                try (PreparedStatement ps = connection.prepareStatement(deleteDeckSql)) {
+                    ps.setInt(1, id);
+                    ps.executeUpdate();
+                }
+                connection.commit();
+            } catch (SQLException e) {
+                connection.rollback();
+                throw e;
+            }
+        }
     }
 }

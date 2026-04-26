@@ -123,6 +123,24 @@ public class FlashcardDatabaseRepository {
     }
 
     /**
+     * Updates an existing flashcard's question, answer, and deck.
+     */
+    public void updateFlashcard(Flashcard flashcard) throws SQLException {
+        String sql = "UPDATE flashcards SET question = ?, answer = ?, deck_name = ? WHERE id = ?";
+
+        try (Connection connection = DatabaseManager.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setString(1, flashcard.getQuestion());
+            statement.setString(2, flashcard.getAnswer());
+            statement.setString(3, flashcard.getDeckName());
+            statement.setInt(4, flashcard.getId());
+
+            statement.executeUpdate();
+        }
+    }
+
+    /**
      * Deletes a flashcard by its database id.
      */
     public void deleteFlashcardById(int id) throws SQLException {
