@@ -7,7 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -23,10 +23,10 @@ import java.util.List;
 public class DefineFlashcardController {
 
     @FXML
-    private TextField questionField;
+    private TextArea questionArea;
 
     @FXML
-    private TextField answerField;
+    private TextArea answerArea;
 
     @FXML
     private ComboBox<String> deckComboBox;
@@ -67,8 +67,8 @@ public class DefineFlashcardController {
      */
     @FXML
     public void handleSaveFlashcard() {
-        String question = questionField.getText().trim();
-        String answer = answerField.getText().trim();
+        String question = questionArea.getText().trim();
+        String answer = answerArea.getText().trim();
         String deckName = deckComboBox.getValue();
 
         // Basic validation
@@ -80,15 +80,15 @@ public class DefineFlashcardController {
         // Store creation time so list page can sort newest first
         String createdAt = LocalDateTime.now().toString();
 
-        Flashcard flashcard = new Flashcard(question, answer, deckName, createdAt);
+        Flashcard flashcard = new Flashcard(0, question, answer, deckName, createdAt);
 
         try {
             flashcardRepository.saveFlashcard(flashcard);
             statusLabel.setText("Flashcard saved successfully.");
 
             // Clear only text inputs after a successful save
-            questionField.clear();
-            answerField.clear();
+            questionArea.clear();
+            answerArea.clear();
             deckComboBox.setValue(null);
         } catch (SQLException e) {
             statusLabel.setText("Error saving flashcard.");

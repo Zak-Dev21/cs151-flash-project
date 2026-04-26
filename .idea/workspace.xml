@@ -4,10 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7bc3dfe1-7d08-40bf-bfac-15c3d0a5a079" name="Changes" comment="">
+    <list default="true" id="514fdb63-ac53-40a4-808e-03e3500423c0" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/cs151/application/SearchFlashcardController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cs151/application/search-flashcard-view.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cs151/application/Flashcard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cs151/application/Flashcard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReadMe.md" beforeDir="false" afterPath="$PROJECT_DIR$/ReadMe.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flashcards.db" beforeDir="false" afterPath="$PROJECT_DIR$/flashcards.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cs151/application/DefineFlashcardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cs151/application/DefineFlashcardController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cs151/application/FlashcardDatabaseRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cs151/application/FlashcardDatabaseRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cs151/application/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cs151/application/HomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cs151/application/define-flashcard-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cs151/application/define-flashcard-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cs151/application/flashcard-list-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cs151/application/flashcard-list-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cs151/application/DefineFlashcardController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cs151/application/DefineFlashcardController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cs151/application/Flashcard.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cs151/application/Flashcard.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cs151/application/FlashcardDatabaseRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cs151/application/FlashcardDatabaseRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cs151/application/HomeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cs151/application/HomeController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cs151/application/define-flashcard-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cs151/application/define-flashcard-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cs151/application/flashcard-list-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cs151/application/flashcard-list-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,27 +35,26 @@
     <urls />
   </component>
   <component name="ProjectColorInfo">{
-  &quot;customColor&quot;: &quot;&quot;,
-  &quot;associatedIndex&quot;: 3
+  &quot;associatedIndex&quot;: 4
 }</component>
-  <component name="ProjectId" id="3BatmoTUkvGWrNWbHsmmTfLzJH5" />
+  <component name="ProjectId" id="3CHmbASDXflkV9yL3E6mEaTqAxR" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/CS 151 Project Flash/dev-02-0.5&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/CS 151 Project Flash/dev-02-0.6"
   }
-}</component>
+}]]></component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -52,23 +64,12 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="7bc3dfe1-7d08-40bf-bfac-15c3d0a5a079" name="Changes" comment="" />
-      <created>1774739173820</created>
+      <changelist id="514fdb63-ac53-40a4-808e-03e3500423c0" name="Changes" comment="" />
+      <created>1776050939169</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1774739173820</updated>
+      <updated>1776050939169</updated>
     </task>
     <servers />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
   </component>
 </project>

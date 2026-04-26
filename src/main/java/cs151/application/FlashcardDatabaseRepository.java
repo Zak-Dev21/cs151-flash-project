@@ -34,7 +34,7 @@ public class FlashcardDatabaseRepository {
     public List<Flashcard> getFlashcardsByDeck(String deckName) throws SQLException {
         List<Flashcard> flashcards = new ArrayList<>();
 
-        String sql = "SELECT question, answer, deck_name, created_at " +
+        String sql = "SELECT id, question, answer, deck_name, created_at " +
                 "FROM flashcards WHERE deck_name = ? ORDER BY created_at DESC";
 
         try (Connection connection = DatabaseManager.getConnection();
@@ -61,13 +61,12 @@ public class FlashcardDatabaseRepository {
 
     /**
      * Retrieves all flashcards in the database.
-     * Results are ordered by most recent first so the newest
-     * flashcards appear at the top of the TableView.
+     * Results are ordered by most recent first.
      */
     public List<Flashcard> getAllFlashcards() throws SQLException {
         List<Flashcard> flashcards = new ArrayList<>();
 
-        String sql = "SELECT question, answer, deck_name, created_at " +
+        String sql = "SELECT id, question, answer, deck_name, created_at " +
                 "FROM flashcards ORDER BY created_at DESC";
 
         try (Connection connection = DatabaseManager.getConnection();
@@ -76,6 +75,7 @@ public class FlashcardDatabaseRepository {
 
             while (resultSet.next()) {
                 Flashcard flashcard = new Flashcard(
+                        resultSet.getInt("id"),
                         resultSet.getString("question"),
                         resultSet.getString("answer"),
                         resultSet.getString("deck_name"),
@@ -86,5 +86,53 @@ public class FlashcardDatabaseRepository {
         }
 
         return flashcards;
+    }
+
+    /**
+     * Searches flashcards whose question or answer partially matches the given query.
+     */
+    public List<Flashcard> searchFlashcards(String query) throws SQLException {
+        List<Flashcard> flashcards = new ArrayList<>();
+
+        String sql = "SELECT id, question, answer, deck_name, created_at " +
+                "FROM flashcards WHERE question LIKE ? OR answer LIKE ? ORDER BY created_at DESC";
+
+        String pattern = "%" + query + "%";
+
+        try (Connection connection = DatabaseManager.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setString(1, pattern);
+            statement.setString(2, pattern);
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    Flashcard flashcard = new Flashcard(
+                            resultSet.getInt("id"),
+                            resultSet.getString("question"),
+                            resultSet.getString("answer"),
+                            resultSet.getString("deck_name"),
+                            resultSet.getString("created_at")
+                    );
+                    flashcards.add(flashcard);
+                }
+            }
+        }
+
+        return flashcards;
+    }
+
+    /**
+     * Deletes a flashcard by its database id.
+     */
+    public void deleteFlashcardById(int id) throws SQLException {
+        String sql = "DELETE FROM flashcards WHERE id = ?";
+
+        try (Connection connection = DatabaseManager.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setInt(1, id);
+            statement.executeUpdate();
+        }
     }
 }
