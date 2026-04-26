@@ -41,7 +41,7 @@ public class HomeController {
     }
 
     public void handleViewFlashcards(ActionEvent actionEvent) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("flashcard-list-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("search-flashcard-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1000, 700);
         scene.getStylesheets().add(Main.class.getResource("style.css").toExternalForm());
 
@@ -49,6 +49,4 @@ public class HomeController {
         stage.setScene(scene);
         stage.show();
     }
-
-
 }

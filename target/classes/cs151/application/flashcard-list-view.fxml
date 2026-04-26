@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <VBox alignment="CENTER" spacing="20" stylesheets="@style.css"
-      xmlns="http://javafx.com/javafx/21"
+      xmlns="http://javafx.com/javafx/23"
       xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="cs151.application.FlashcardListController"
       styleClass="page">

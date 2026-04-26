@@ -2,6 +2,11 @@
 
 # Who did What
 
+# Version: 0.6
+1. Zakaria Bouaddou: Implemented flashcard search functionality (TableView + partial text search), integrated delete flashcard feature with database, and finalized backend logic for flashcards
+2. Esteban Madrigal: Assisted with flashcard controller integration and ensured proper connection between UI and repository methods
+3. Rohan Poosala: Designed and implemented Search Flashcard UI (FXML), added TableView display, search bar, and delete button, and applied UI styling improvements
+
 # Version: 0.5
 1. Zakaria Bouaddou: Migrated deck storage to SQLite, updated controllers to use database, and implemented flashcard backend (model + repository)
 2. Esteban Madrigal: Implemented flashcard controllers and UI integration
