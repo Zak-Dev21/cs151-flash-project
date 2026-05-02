@@ -40,7 +40,9 @@ public class DatabaseManager {
                     question TEXT NOT NULL,
                     answer TEXT NOT NULL,
                     deck_name TEXT NOT NULL,
-                    created_at TEXT NOT NULL
+                    created_at TEXT NOT NULL,
+                    status TEXT NOT NULL,
+                    last_reviewed_at TEXT
                 );
                 """;
 

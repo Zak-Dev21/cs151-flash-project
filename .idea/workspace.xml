@@ -4,123 +4,118 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="514fdb63-ac53-40a4-808e-03e3500423c0" name="Changes" comment="." />
+    <list default="true" id="0640ba1f-528c-4135-a3b9-4b7869806e5f" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.claude/worktrees/cranky-leakey-c1c304" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_25_26,_6_53 PM_[Changes]/DatabaseManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_25_26,_6_53 PM_[Changes]/Deck.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_25_26,_6_53 PM_[Changes]/DeckDatabaseRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_25_26,_6_53 PM_[Changes]/DeckFileRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_25_26,_6_53 PM_[Changes]/DeckListController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_25_26,_6_53 PM_[Changes]/DefineDeckController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_25_26,_6_53 PM_[Changes]/DefineFlashcardController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_25_26,_6_53 PM_[Changes]/Flashcard.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_25_26,_6_53 PM_[Changes]/FlashcardDatabaseRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_25_26,_6_53 PM_[Changes]/FlashcardListController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_25_26,_6_53 PM_[Changes]/HomeController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_25_26,_6_53 PM_[Changes]/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_25_26,_6_53 PM_[Changes]/flashcards.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_25_26,_6_53 PM_[Changes]/module-info.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_25_26,_6_53 PM_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReadMe.md" beforeDir="false" afterPath="$PROJECT_DIR$/ReadMe.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flashcards.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cs151/application/DatabaseManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cs151/application/Deck.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cs151/application/DeckDatabaseRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cs151/application/DeckFileRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cs151/application/DeckListController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cs151/application/DefineDeckController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cs151/application/DefineFlashcardController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cs151/application/EditDeckController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cs151/application/EditFlashcardController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cs151/application/Flashcard.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cs151/application/FlashcardDatabaseRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cs151/application/FlashcardListController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cs151/application/HomeController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cs151/application/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cs151/application/SearchFlashcardController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cs151/application/deck-list-view.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cs151/application/define-deck-view.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cs151/application/define-flashcard-view.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cs151/application/edit-deck-view.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cs151/application/edit-flashcard-view.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cs151/application/flashcard-list-view.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cs151/application/home-view.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cs151/application/search-flashcard-view.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cs151/application/style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/module-info.class" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="CopilotPersistence">
-    <persistenceIdMap>
-      <entry key="_C:/Users/GAMING PC/IdeaProjects/cs151-flash-project" value="3CHmbASDXflkV9yL3E6mEaTqAxR" />
-    </persistenceIdMap>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;Stebiee&quot;
-  }
-}</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/Zak-Dev21/cs151-flash-project.git&quot;,
-    &quot;accountId&quot;: &quot;dc19567d-c213-4b23-81a4-0185eb4c071b&quot;
-  }
-}</component>
   <component name="McpProjectServerCommands">
     <commands />
     <urls />
   </component>
   <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 4
+  &quot;associatedIndex&quot;: 5
 }</component>
-  <component name="ProjectId" id="3CHmbASDXflkV9yL3E6mEaTqAxR" />
+  <component name="ProjectId" id="3CsagKcPzQKww0oe6TIYYNIFAFQ" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/CS 151 Project Flash/dev-02-0.6&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/BACKUP_program/dev-0.2-0.7"
   }
-}</component>
+}]]></component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="HelloWorld" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="HelloWorld" />
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.26927.53" />
-        <option value="bundled-js-predefined-d6986cc7102b-09060db00ec0-JavaScript-IU-251.26927.53" />
+        <option value="bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.30387.90" />
       </set>
     </attachedChunks>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="514fdb63-ac53-40a4-808e-03e3500423c0" name="Changes" comment="" />
-      <created>1776050939169</created>
+      <changelist id="0640ba1f-528c-4135-a3b9-4b7869806e5f" name="Changes" comment="" />
+      <created>1777176842940</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1776050939169</updated>
-      <workItem from="1777168954247" duration="1135000" />
-      <workItem from="1777171031183" duration="1460000" />
-      <workItem from="1777172938855" duration="433000" />
+      <updated>1777176842940</updated>
     </task>
-    <task id="LOCAL-00001" summary=".">
-      <option name="closed" value="true" />
-      <created>1777172883995</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1777172883995</updated>
-    </task>
-    <task id="LOCAL-00002" summary=".">
-      <option name="closed" value="true" />
-      <created>1777173315566</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1777173315566</updated>
-    </task>
-    <task id="LOCAL-00003" summary=".">
-      <option name="closed" value="true" />
-      <created>1777173363185</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1777173363185</updated>
-    </task>
-    <option name="localTasksCounter" value="4" />
     <servers />
-  </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="." />
-    <option name="LAST_COMMIT_MESSAGE" value="." />
-  </component>
-  <component name="github-copilot-workspace">
-    <instructionFileLocations>
-      <option value=".github/instructions" />
-    </instructionFileLocations>
-    <promptFileLocations>
-      <option value=".github/prompts" />
-    </promptFileLocations>
   </component>
 </project>

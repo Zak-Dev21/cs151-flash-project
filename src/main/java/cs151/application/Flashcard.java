@@ -10,6 +10,8 @@ public class Flashcard {
     private String answer;
     private String deckName;
     private String createdAt;
+    private String status;
+    private String lastReviewedAt;
 
     // Default constructor (required for flexibility and frameworks if needed)
     public Flashcard() {
@@ -19,12 +21,14 @@ public class Flashcard {
      * Constructs a flashcard with all required fields.
      */
 
-    public Flashcard(int id, String question, String answer, String deckName, String createdAt) {
+    public Flashcard(int id, String question, String answer, String deckName, String createdAt, String status, String lastReviewedAt) {
         this.question = question;
         this.answer = answer;
         this.deckName = deckName;
         this.createdAt = createdAt;
         this.id = id;
+        this.status = status;
+        this.lastReviewedAt = lastReviewedAt;
     }
 
     public int getId() { return id; }
@@ -61,5 +65,21 @@ public class Flashcard {
 
     public void setCreatedAt(String createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public String getLastReviewedAt() {
+        return lastReviewedAt;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setLastReviewedAt(String lastReviewedAt) {
+        this.lastReviewedAt = lastReviewedAt;
     }
 }
