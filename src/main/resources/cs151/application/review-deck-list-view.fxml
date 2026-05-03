@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="cs151.application.ReviewDeckListController"
+      spacing="15"
+      styleClass="page">
+
+    <Label text="Review Decks" styleClass="title"/>
+
+    <HBox spacing="10">
+        <TextField fx:id="searchField"
+                   promptText="Search decks..."
+                   prefWidth="300"/>
+        <Button text="Search"
+                onAction="#handleSearch"
+                styleClass="primary-button"/>
+    </HBox>
+
+    <TableView fx:id="deckTable" prefHeight="400">
+        <columns>
+            <TableColumn fx:id="nameColumn"
+                         text="Deck Name"
+                         prefWidth="200"/>
+            <TableColumn fx:id="descriptionColumn"
+                         text="Description"
+                         prefWidth="350"/>
+            <TableColumn fx:id="createdAtColumn"
+                         text="Created At"
+                         prefWidth="200"/>
+        </columns>
+    </TableView>
+
+    <Label fx:id="statusLabel" styleClass="status-label"/>
+
+    <Button text="Back"
+            onAction="#handleBackHome"
+            styleClass="secondary-button"/>
+
+</VBox>

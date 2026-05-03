@@ -6,6 +6,16 @@
 
 
 
+# Version: 0.8
+
+1. Zakaria Bouaddou: backend + integration + testing
+
+2\. Rohan: UI
+
+3\. Esteban: review logic
+
+
+
 
 
 # Version: 0.7
