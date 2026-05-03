@@ -41,22 +41,18 @@ public class DatabaseManager {
                     answer TEXT NOT NULL,
                     deck_name TEXT NOT NULL,
                     created_at TEXT NOT NULL,
-                    status TEXT NOT NULL,
+                    status TEXT NOT NULL DEFAULT 'New',
                     last_reviewed_at TEXT
                 );
                 """;
 
-        // Migrate existing flashcards table: add review columns if the DB predates them.
-        String addStatus = "ALTER TABLE flashcards ADD COLUMN IF NOT EXISTS status TEXT NOT NULL DEFAULT 'New'";
-        String addLastReviewed = "ALTER TABLE flashcards ADD COLUMN IF NOT EXISTS last_reviewed_at TEXT";
+
 
         try (Connection connection = getConnection();
              Statement statement = connection.createStatement()) {
 
             statement.execute(createDeckTable);
             statement.execute(createFlashcardTable);
-            statement.execute(addStatus);
-            statement.execute(addLastReviewed);
 
         } catch (SQLException e) {
             e.printStackTrace();
