@@ -80,7 +80,7 @@ public class DefineFlashcardController {
         // Store creation time so list page can sort newest first
         String createdAt = LocalDateTime.now().toString();
 
-        Flashcard flashcard = new Flashcard(0, question, answer, deckName, createdAt);
+        Flashcard flashcard = new Flashcard(0, question, answer, deckName, createdAt, "New", "");
 
         try {
             flashcardRepository.saveFlashcard(flashcard);

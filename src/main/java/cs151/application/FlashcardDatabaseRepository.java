@@ -13,7 +13,7 @@ public class FlashcardDatabaseRepository {
      * Saves a flashcard into the database.
      */
     public void saveFlashcard(Flashcard flashcard) throws SQLException {
-        String sql = "INSERT INTO flashcards(question, answer, deck_name, created_at) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO flashcards(question, answer, deck_name, created_at, status, last_reviewed_at) VALUES (?, ?, ?, ?, ?, ?)";
 
         try (Connection connection = DatabaseManager.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -22,6 +22,8 @@ public class FlashcardDatabaseRepository {
             statement.setString(2, flashcard.getAnswer());
             statement.setString(3, flashcard.getDeckName());
             statement.setString(4, flashcard.getCreatedAt());
+            statement.setString(5, flashcard.getStatus());
+            statement.setString(6, flashcard.getLastReviewedAt());
 
             statement.executeUpdate();
         }
@@ -34,7 +36,7 @@ public class FlashcardDatabaseRepository {
     public List<Flashcard> getFlashcardsByDeck(String deckName) throws SQLException {
         List<Flashcard> flashcards = new ArrayList<>();
 
-        String sql = "SELECT id, question, answer, deck_name, created_at " +
+        String sql = "SELECT id, question, answer, deck_name, created_at, status, last_reviewed_at " +
                 "FROM flashcards WHERE deck_name = ? ORDER BY created_at DESC";
 
         try (Connection connection = DatabaseManager.getConnection();
@@ -49,7 +51,9 @@ public class FlashcardDatabaseRepository {
                             resultSet.getString("question"),
                             resultSet.getString("answer"),
                             resultSet.getString("deck_name"),
-                            resultSet.getString("created_at")
+                            resultSet.getString("created_at"),
+                            resultSet.getString("status"),
+                            resultSet.getString("last_reviewed_at")
                     );
                     flashcards.add(flashcard);
                 }
@@ -66,7 +70,7 @@ public class FlashcardDatabaseRepository {
     public List<Flashcard> getAllFlashcards() throws SQLException {
         List<Flashcard> flashcards = new ArrayList<>();
 
-        String sql = "SELECT id, question, answer, deck_name, created_at " +
+        String sql = "SELECT id, question, answer, deck_name, created_at, status, last_reviewed_at " +
                 "FROM flashcards ORDER BY created_at DESC";
 
         try (Connection connection = DatabaseManager.getConnection();
@@ -79,7 +83,10 @@ public class FlashcardDatabaseRepository {
                         resultSet.getString("question"),
                         resultSet.getString("answer"),
                         resultSet.getString("deck_name"),
-                        resultSet.getString("created_at")
+                        resultSet.getString("created_at"),
+                        resultSet.getString("status"),
+                        resultSet.getString("last_reviewed_at")
+
                 );
                 flashcards.add(flashcard);
             }
@@ -94,7 +101,7 @@ public class FlashcardDatabaseRepository {
     public List<Flashcard> searchFlashcards(String query) throws SQLException {
         List<Flashcard> flashcards = new ArrayList<>();
 
-        String sql = "SELECT id, question, answer, deck_name, created_at " +
+        String sql = "SELECT id, question, answer, deck_name, created_at, status, last_reviewed_at " +
                 "FROM flashcards WHERE question LIKE ? OR answer LIKE ? ORDER BY created_at DESC";
 
         String pattern = "%" + query + "%";
@@ -112,7 +119,9 @@ public class FlashcardDatabaseRepository {
                             resultSet.getString("question"),
                             resultSet.getString("answer"),
                             resultSet.getString("deck_name"),
-                            resultSet.getString("created_at")
+                            resultSet.getString("created_at"),
+                            resultSet.getString("status"),
+                            resultSet.getString("last_reviewed_at")
                     );
                     flashcards.add(flashcard);
                 }
@@ -126,7 +135,7 @@ public class FlashcardDatabaseRepository {
      * Updates an existing flashcard's question, answer, and deck.
      */
     public void updateFlashcard(Flashcard flashcard) throws SQLException {
-        String sql = "UPDATE flashcards SET question = ?, answer = ?, deck_name = ? WHERE id = ?";
+        String sql = "UPDATE flashcards SET question = ?, answer = ?, deck_name = ?, status = ?, last_reviewed_at = ? WHERE id = ?";
 
         try (Connection connection = DatabaseManager.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -134,7 +143,9 @@ public class FlashcardDatabaseRepository {
             statement.setString(1, flashcard.getQuestion());
             statement.setString(2, flashcard.getAnswer());
             statement.setString(3, flashcard.getDeckName());
-            statement.setInt(4, flashcard.getId());
+            statement.setString(4, flashcard.getStatus());
+            statement.setString(5, flashcard.getLastReviewedAt());
+            statement.setInt(6, flashcard.getId());
 
             statement.executeUpdate();
         }
