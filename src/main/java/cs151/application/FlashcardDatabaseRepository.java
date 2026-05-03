@@ -13,7 +13,7 @@ public class FlashcardDatabaseRepository {
      * Saves a flashcard into the database.
      */
     public void saveFlashcard(Flashcard flashcard) throws SQLException {
-        String sql = "INSERT INTO flashcards(question, answer, deck_name, created_at, status) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO flashcards(question, answer, deck_name, created_at, status, last_reviewed_at) VALUES (?, ?, ?, ?, ?, ?)";
 
         try (Connection connection = DatabaseManager.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -22,7 +22,8 @@ public class FlashcardDatabaseRepository {
             statement.setString(2, flashcard.getAnswer());
             statement.setString(3, flashcard.getDeckName());
             statement.setString(4, flashcard.getCreatedAt());
-            statement.setString(5, flashcard.getStatus() != null ? flashcard.getStatus() : "New");
+            statement.setString(5, flashcard.getStatus());
+            statement.setString(6, flashcard.getLastReviewedAt());
 
             statement.executeUpdate();
         }
@@ -45,7 +46,16 @@ public class FlashcardDatabaseRepository {
 
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
-                    flashcards.add(mapRow(resultSet));
+                    Flashcard flashcard = new Flashcard(
+                            resultSet.getInt("id"),
+                            resultSet.getString("question"),
+                            resultSet.getString("answer"),
+                            resultSet.getString("deck_name"),
+                            resultSet.getString("created_at"),
+                            resultSet.getString("status"),
+                            resultSet.getString("last_reviewed_at")
+                    );
+                    flashcards.add(flashcard);
                 }
             }
         }
@@ -68,7 +78,17 @@ public class FlashcardDatabaseRepository {
              ResultSet resultSet = statement.executeQuery()) {
 
             while (resultSet.next()) {
-                flashcards.add(mapRow(resultSet));
+                Flashcard flashcard = new Flashcard(
+                        resultSet.getInt("id"),
+                        resultSet.getString("question"),
+                        resultSet.getString("answer"),
+                        resultSet.getString("deck_name"),
+                        resultSet.getString("created_at"),
+                        resultSet.getString("status"),
+                        resultSet.getString("last_reviewed_at")
+
+                );
+                flashcards.add(flashcard);
             }
         }
 
@@ -94,7 +114,16 @@ public class FlashcardDatabaseRepository {
 
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
-                    flashcards.add(mapRow(resultSet));
+                    Flashcard flashcard = new Flashcard(
+                            resultSet.getInt("id"),
+                            resultSet.getString("question"),
+                            resultSet.getString("answer"),
+                            resultSet.getString("deck_name"),
+                            resultSet.getString("created_at"),
+                            resultSet.getString("status"),
+                            resultSet.getString("last_reviewed_at")
+                    );
+                    flashcards.add(flashcard);
                 }
             }
         }
@@ -102,23 +131,11 @@ public class FlashcardDatabaseRepository {
         return flashcards;
     }
 
-    private Flashcard mapRow(ResultSet rs) throws SQLException {
-        return new Flashcard(
-                rs.getInt("id"),
-                rs.getString("question"),
-                rs.getString("answer"),
-                rs.getString("deck_name"),
-                rs.getString("created_at"),
-                rs.getString("status"),
-                rs.getString("last_reviewed_at")
-        );
-    }
-
     /**
      * Updates an existing flashcard's question, answer, and deck.
      */
     public void updateFlashcard(Flashcard flashcard) throws SQLException {
-        String sql = "UPDATE flashcards SET question = ?, answer = ?, deck_name = ? WHERE id = ?";
+        String sql = "UPDATE flashcards SET question = ?, answer = ?, deck_name = ?, status = ?, last_reviewed_at = ? WHERE id = ?";
 
         try (Connection connection = DatabaseManager.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -126,7 +143,9 @@ public class FlashcardDatabaseRepository {
             statement.setString(1, flashcard.getQuestion());
             statement.setString(2, flashcard.getAnswer());
             statement.setString(3, flashcard.getDeckName());
-            statement.setInt(4, flashcard.getId());
+            statement.setString(4, flashcard.getStatus());
+            statement.setString(5, flashcard.getLastReviewedAt());
+            statement.setInt(6, flashcard.getId());
 
             statement.executeUpdate();
         }
@@ -142,19 +161,6 @@ public class FlashcardDatabaseRepository {
              PreparedStatement statement = connection.prepareStatement(sql)) {
 
             statement.setInt(1, id);
-            statement.executeUpdate();
-        }
-    }
-
-    public void updateReviewStatus(Flashcard flashcard) throws SQLException {
-        String sql = "UPDATE flashcards SET status = ?, last_reviewed_at = ? WHERE id = ?";
-
-        try (Connection connection = DatabaseManager.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
-
-            statement.setString(1, flashcard.getStatus());
-            statement.setString(2, flashcard.getLastReviewedAt());
-            statement.setInt(3, flashcard.getId());
             statement.executeUpdate();
         }
     }
