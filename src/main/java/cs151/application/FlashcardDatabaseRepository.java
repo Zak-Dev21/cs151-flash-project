@@ -13,7 +13,7 @@ public class FlashcardDatabaseRepository {
      * Saves a flashcard into the database.
      */
     public void saveFlashcard(Flashcard flashcard) throws SQLException {
-        String sql = "INSERT INTO flashcards(question, answer, deck_name, created_at) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO flashcards(question, answer, deck_name, created_at, status) VALUES (?, ?, ?, ?, ?)";
 
         try (Connection connection = DatabaseManager.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -22,6 +22,7 @@ public class FlashcardDatabaseRepository {
             statement.setString(2, flashcard.getAnswer());
             statement.setString(3, flashcard.getDeckName());
             statement.setString(4, flashcard.getCreatedAt());
+            statement.setString(5, flashcard.getStatus() != null ? flashcard.getStatus() : "New");
 
             statement.executeUpdate();
         }
@@ -34,7 +35,7 @@ public class FlashcardDatabaseRepository {
     public List<Flashcard> getFlashcardsByDeck(String deckName) throws SQLException {
         List<Flashcard> flashcards = new ArrayList<>();
 
-        String sql = "SELECT id, question, answer, deck_name, created_at " +
+        String sql = "SELECT id, question, answer, deck_name, created_at, status, last_reviewed_at " +
                 "FROM flashcards WHERE deck_name = ? ORDER BY created_at DESC";
 
         try (Connection connection = DatabaseManager.getConnection();
@@ -44,14 +45,7 @@ public class FlashcardDatabaseRepository {
 
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
-                    Flashcard flashcard = new Flashcard(
-                            resultSet.getInt("id"),
-                            resultSet.getString("question"),
-                            resultSet.getString("answer"),
-                            resultSet.getString("deck_name"),
-                            resultSet.getString("created_at")
-                    );
-                    flashcards.add(flashcard);
+                    flashcards.add(mapRow(resultSet));
                 }
             }
         }
@@ -66,7 +60,7 @@ public class FlashcardDatabaseRepository {
     public List<Flashcard> getAllFlashcards() throws SQLException {
         List<Flashcard> flashcards = new ArrayList<>();
 
-        String sql = "SELECT id, question, answer, deck_name, created_at " +
+        String sql = "SELECT id, question, answer, deck_name, created_at, status, last_reviewed_at " +
                 "FROM flashcards ORDER BY created_at DESC";
 
         try (Connection connection = DatabaseManager.getConnection();
@@ -74,14 +68,7 @@ public class FlashcardDatabaseRepository {
              ResultSet resultSet = statement.executeQuery()) {
 
             while (resultSet.next()) {
-                Flashcard flashcard = new Flashcard(
-                        resultSet.getInt("id"),
-                        resultSet.getString("question"),
-                        resultSet.getString("answer"),
-                        resultSet.getString("deck_name"),
-                        resultSet.getString("created_at")
-                );
-                flashcards.add(flashcard);
+                flashcards.add(mapRow(resultSet));
             }
         }
 
@@ -94,7 +81,7 @@ public class FlashcardDatabaseRepository {
     public List<Flashcard> searchFlashcards(String query) throws SQLException {
         List<Flashcard> flashcards = new ArrayList<>();
 
-        String sql = "SELECT id, question, answer, deck_name, created_at " +
+        String sql = "SELECT id, question, answer, deck_name, created_at, status, last_reviewed_at " +
                 "FROM flashcards WHERE question LIKE ? OR answer LIKE ? ORDER BY created_at DESC";
 
         String pattern = "%" + query + "%";
@@ -107,19 +94,24 @@ public class FlashcardDatabaseRepository {
 
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
-                    Flashcard flashcard = new Flashcard(
-                            resultSet.getInt("id"),
-                            resultSet.getString("question"),
-                            resultSet.getString("answer"),
-                            resultSet.getString("deck_name"),
-                            resultSet.getString("created_at")
-                    );
-                    flashcards.add(flashcard);
+                    flashcards.add(mapRow(resultSet));
                 }
             }
         }
 
         return flashcards;
+    }
+
+    private Flashcard mapRow(ResultSet rs) throws SQLException {
+        return new Flashcard(
+                rs.getInt("id"),
+                rs.getString("question"),
+                rs.getString("answer"),
+                rs.getString("deck_name"),
+                rs.getString("created_at"),
+                rs.getString("status"),
+                rs.getString("last_reviewed_at")
+        );
     }
 
     /**
@@ -150,6 +142,19 @@ public class FlashcardDatabaseRepository {
              PreparedStatement statement = connection.prepareStatement(sql)) {
 
             statement.setInt(1, id);
+            statement.executeUpdate();
+        }
+    }
+
+    public void updateReviewStatus(Flashcard flashcard) throws SQLException {
+        String sql = "UPDATE flashcards SET status = ?, last_reviewed_at = ? WHERE id = ?";
+
+        try (Connection connection = DatabaseManager.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setString(1, flashcard.getStatus());
+            statement.setString(2, flashcard.getLastReviewedAt());
+            statement.setInt(3, flashcard.getId());
             statement.executeUpdate();
         }
     }

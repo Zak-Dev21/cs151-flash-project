@@ -25,7 +25,16 @@
 
         <HBox spacing="10" alignment="CENTER_LEFT">
             <Label text="Deck:" styleClass="field-label"/>
-            <ComboBox fx:id="deckFilter" promptText="All Decks" prefWidth="220" onAction="#handleDeckSelected"/>
+            <ComboBox fx:id="deckFilter" promptText="All Decks" prefWidth="180"
+                      onAction="#handleDeckSelected"/>
+
+            <Label text="Status:" styleClass="field-label"/>
+            <ComboBox fx:id="statusFilter" prefWidth="140"
+                      onAction="#handleStatusSelected"/>
+
+            <Label text="Last reviewed:" styleClass="field-label"/>
+            <ComboBox fx:id="lastReviewedFilter" prefWidth="190"
+                      onAction="#handleLastReviewedSelected"/>
         </HBox>
 
         <TextField fx:id="searchField" promptText="Filter by question or answer..."
@@ -33,8 +42,8 @@
                    onAction="#handleSearch"/>
 
         <HBox spacing="10" alignment="CENTER_LEFT">
-            <Button text="Search" onAction="#handleSearch" styleClass="primary-button" prefWidth="120"/>
-            <Button text="Show All" onAction="#handleShowAll" styleClass="secondary-button" prefWidth="120"/>
+            <Button text="Search"          onAction="#handleSearch"         styleClass="primary-button"   prefWidth="120"/>
+            <Button text="Show All"        onAction="#handleShowAll"        styleClass="secondary-button" prefWidth="120"/>
             <Button text="Delete Selected" onAction="#handleDeleteSelected" styleClass="secondary-button" prefWidth="140"/>
         </HBox>
 
@@ -42,10 +51,10 @@
 
         <TableView fx:id="flashcardTable" prefWidth="900" prefHeight="360">
             <columns>
-                <TableColumn fx:id="idColumn" text="ID" prefWidth="50"/>
-                <TableColumn fx:id="questionColumn" text="Question" prefWidth="230"/>
-                <TableColumn fx:id="answerColumn" text="Answer" prefWidth="230"/>
-                <TableColumn fx:id="deckColumn" text="Deck" prefWidth="180"/>
+                <TableColumn fx:id="idColumn"        text="ID"         prefWidth="50"/>
+                <TableColumn fx:id="questionColumn"  text="Question"   prefWidth="230"/>
+                <TableColumn fx:id="answerColumn"    text="Answer"     prefWidth="230"/>
+                <TableColumn fx:id="deckColumn"      text="Deck"       prefWidth="180"/>
                 <TableColumn fx:id="createdAtColumn" text="Created At" prefWidth="200"/>
             </columns>
         </TableView>

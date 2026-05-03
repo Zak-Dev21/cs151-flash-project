@@ -17,14 +17,19 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class SearchFlashcardController {
 
-    private static final String ALL_DECKS = "All Decks";
+    private static final String ALL_DECKS    = "All Decks";
+    private static final String ALL_STATUS   = "All";
+    private static final String ALL_REVIEWED = "All";
 
     @FXML private ComboBox<String> deckFilter;
+    @FXML private ComboBox<String> statusFilter;
+    @FXML private ComboBox<String> lastReviewedFilter;
     @FXML private TextField searchField;
     @FXML private TableView<Flashcard> flashcardTable;
     @FXML private TableColumn<Flashcard, Number> idColumn;
@@ -46,6 +51,15 @@ public class SearchFlashcardController {
         createdAtColumn.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().getCreatedAt()));
 
         loadDeckFilter();
+
+        statusFilter.setItems(FXCollections.observableArrayList(
+                ALL_STATUS, "New", "Learning", "Mastered"));
+        statusFilter.setValue(ALL_STATUS);
+
+        lastReviewedFilter.setItems(FXCollections.observableArrayList(
+                ALL_REVIEWED, "Never reviewed", "Reviewed today",
+                "Reviewed this week", "Reviewed this month", "Older than a month"));
+        lastReviewedFilter.setValue(ALL_REVIEWED);
 
         flashcardTable.setOnMouseClicked(e -> {
             if (e.getClickCount() == 2) {
@@ -84,6 +98,16 @@ public class SearchFlashcardController {
     }
 
     @FXML
+    public void handleStatusSelected() {
+        loadFiltered();
+    }
+
+    @FXML
+    public void handleLastReviewedSelected() {
+        loadFiltered();
+    }
+
+    @FXML
     public void handleSearch() {
         loadFiltered();
     }
@@ -91,36 +115,66 @@ public class SearchFlashcardController {
     @FXML
     public void handleShowAll() {
         deckFilter.setValue(ALL_DECKS);
+        statusFilter.setValue(ALL_STATUS);
+        lastReviewedFilter.setValue(ALL_REVIEWED);
         searchField.clear();
         loadFiltered();
     }
 
     private void loadFiltered() {
-        String selectedDeck = deckFilter.getValue();
-        String query = searchField.getText().trim().toLowerCase();
+        String selectedDeck   = deckFilter.getValue();
+        String selectedStatus = statusFilter.getValue();
+        String selectedLr     = lastReviewedFilter.getValue();
+        String query          = searchField.getText().trim().toLowerCase();
 
         try {
-            List<Flashcard> base;
+            List<Flashcard> results;
             if (selectedDeck == null || selectedDeck.equals(ALL_DECKS)) {
-                base = flashcardRepo.getAllFlashcards();
+                results = flashcardRepo.getAllFlashcards();
             } else {
-                base = flashcardRepo.getFlashcardsByDeck(selectedDeck);
+                results = flashcardRepo.getFlashcardsByDeck(selectedDeck);
             }
 
-            List<Flashcard> results = query.isEmpty() ? base : base.stream()
-                    .filter(f -> f.getQuestion().toLowerCase().contains(query)
-                              || f.getAnswer().toLowerCase().contains(query))
-                    .collect(Collectors.toList());
+            if (selectedStatus != null && !selectedStatus.equals(ALL_STATUS)) {
+                results = results.stream()
+                        .filter(f -> selectedStatus.equals(f.getStatus()))
+                        .collect(Collectors.toList());
+            }
+
+            if (selectedLr != null && !selectedLr.equals(ALL_REVIEWED)) {
+                results = results.stream()
+                        .filter(f -> selectedLr.equals(classifyLastReviewed(f.getLastReviewedAt())))
+                        .collect(Collectors.toList());
+            }
+
+            if (!query.isEmpty()) {
+                results = results.stream()
+                        .filter(f -> f.getQuestion().toLowerCase().contains(query)
+                                  || f.getAnswer().toLowerCase().contains(query))
+                        .collect(Collectors.toList());
+            }
 
             flashcardTable.setItems(FXCollections.observableArrayList(results));
+            statusLabel.setText(results.isEmpty()
+                    ? "No flashcards found."
+                    : results.size() + " flashcard(s) shown.");
 
-            if (results.isEmpty()) {
-                statusLabel.setText("No flashcards found.");
-            } else {
-                statusLabel.setText(results.size() + " flashcard(s) shown.");
-            }
         } catch (SQLException e) {
             statusLabel.setText("Error loading flashcards.");
+        }
+    }
+
+    private String classifyLastReviewed(String lastReviewedAt) {
+        if (lastReviewedAt == null || lastReviewedAt.isBlank()) return "Never reviewed";
+        try {
+            LocalDateTime reviewed = LocalDateTime.parse(lastReviewedAt);
+            LocalDateTime now = LocalDateTime.now();
+            if (reviewed.toLocalDate().equals(now.toLocalDate()))  return "Reviewed today";
+            if (reviewed.isAfter(now.minusWeeks(1)))               return "Reviewed this week";
+            if (reviewed.isAfter(now.minusMonths(1)))              return "Reviewed this month";
+            return "Older than a month";
+        } catch (Exception e) {
+            return "Never reviewed";
         }
     }
 
