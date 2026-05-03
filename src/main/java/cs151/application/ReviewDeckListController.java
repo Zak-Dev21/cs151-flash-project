@@ -98,7 +98,7 @@ public class ReviewDeckListController {
         scene.getStylesheets().add(Main.class.getResource("style.css").toExternalForm());
 
         DeckReviewController controller = loader.getController();
-        controller.setDeck(deck);
+        controller.setDeck(String.valueOf(deck));
 
         Stage stage = (Stage) deckTable.getScene().getWindow();
         stage.setScene(scene);

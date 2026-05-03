@@ -152,6 +152,24 @@ public class FlashcardDatabaseRepository {
     }
 
     /**
+     * Updates only the status and last_reviewed_at for a flashcard.
+     * Used by the review flow to record progress without touching question/answer.
+     */
+    public void updateReviewStatus(int id, String status) throws SQLException {
+        String sql = "UPDATE flashcards SET status = ?, last_reviewed_at = ? WHERE id = ?";
+
+        try (Connection connection = DatabaseManager.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setString(1, status);
+            statement.setString(2, java.time.LocalDateTime.now().toString());
+            statement.setInt(3, id);
+
+            statement.executeUpdate();
+        }
+    }
+
+    /**
      * Deletes a flashcard by its database id.
      */
     public void deleteFlashcardById(int id) throws SQLException {

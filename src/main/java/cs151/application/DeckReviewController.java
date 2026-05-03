@@ -169,7 +169,7 @@ public class DeckReviewController {
 
         try {
             flashcardRepo.updateFlashcard(card);
-            flashcardRepo.updateReviewStatus(card);
+            flashcardRepo.updateReviewStatus(card.getId(), card.getStatus());
             lastReviewedLabel.setText(card.getLastReviewedAt());
             statusLabel.setText("Saved.");
         } catch (SQLException e) {
