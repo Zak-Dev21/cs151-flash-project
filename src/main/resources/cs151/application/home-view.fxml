@@ -24,5 +24,9 @@
     <Button text="View Flashcards"
             onAction="#handleViewFlashcards"
             styleClass="secondary-button"/>
+
+    <Button text="Review"
+            onAction="#handleReview"
+            styleClass="primary-button"/>
 </VBox>
 

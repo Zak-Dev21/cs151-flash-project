@@ -47,6 +47,8 @@ public class DeckReviewController {
     // Feedback
     @FXML private Label statusLabel;
 
+
+
     private final FlashcardDatabaseRepository flashcardRepo = new FlashcardDatabaseRepository();
 
     private String deckName;
@@ -169,7 +171,6 @@ public class DeckReviewController {
 
         try {
             flashcardRepo.updateFlashcard(card);
-            flashcardRepo.updateReviewStatus(card.getId(), card.getStatus());
             lastReviewedLabel.setText(card.getLastReviewedAt());
             statusLabel.setText("Saved.");
         } catch (SQLException e) {

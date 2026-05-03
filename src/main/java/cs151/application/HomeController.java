@@ -49,4 +49,14 @@ public class HomeController {
         stage.setScene(scene);
         stage.show();
     }
+
+    public void handleReview(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("review-deck-list-view.fxml"));
+        Scene scene = new Scene(loader.load(), 1000, 700);
+        scene.getStylesheets().add(Main.class.getResource("style.css").toExternalForm());
+
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
 }
