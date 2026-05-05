@@ -182,7 +182,7 @@ public class DeckReviewController {
 
     @FXML
     public void handleBack(ActionEvent actionEvent) throws IOException {
-        FXMLLoader loader = new FXMLLoader(Main.class.getResource("cs151/application/review-deck-list-view.fxml"));
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("review-deck-list-view.fxml"));
         Scene scene = new Scene(loader.load(), 1000, 700);
         scene.getStylesheets().add(Main.class.getResource("style.css").toExternalForm());
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
