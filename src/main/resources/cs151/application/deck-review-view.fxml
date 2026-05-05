@@ -1,75 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
 
-<VBox xmlns="http://javafx.com/javafx"
-      xmlns:fx="http://javafx.com/fxml"
       fx:controller="cs151.application.DeckReviewController"
-      spacing="15"
       styleClass="page">
 
-    <Label text="Deck Review" styleClass="title"/>
-    <Label fx:id="deckNameLabel" text="Deck Name" styleClass="home-subtitle"/>
 
-    <HBox spacing="10">
-        <Label text="Filter:" styleClass="field-label"/>
-        <ComboBox fx:id="filterComboBox"
-                  prefWidth="180"
-                  onAction="#handleFilterChanged"/>
-        <Label fx:id="progressLabel"
-               text="0 of 0"
-               styleClass="status-label"/>
-    </HBox>
-
-    <VBox spacing="10" styleClass="form-card">
-
-        <Label text="Front" styleClass="field-label"/>
-        <TextArea fx:id="questionArea"
-                  prefRowCount="4"
-                  wrapText="true"/>
-
-        <Label text="Back" styleClass="field-label"/>
-        <TextArea fx:id="answerArea"
-                  prefRowCount="4"
-                  wrapText="true"/>
-
-        <Label text="Status" styleClass="field-label"/>
-        <ComboBox fx:id="statusComboBox"
-                  prefWidth="200"/>
-
-        <Label text="Created Date" styleClass="field-label"/>
-        <Label fx:id="createdAtLabel"
-               text="—"
-               styleClass="home-subtitle"/>
-
-        <Label text="Last Reviewed Date" styleClass="field-label"/>
-        <Label fx:id="lastReviewedLabel"
-               text="—"
-               styleClass="home-subtitle"/>
-
-        <HBox spacing="10">
-            <Button fx:id="prevButton"
-                    text="Previous"
-                    onAction="#handlePrevious"
-                    styleClass="secondary-button"/>
-
-            <Button fx:id="nextButton"
-                    text="Next"
-                    onAction="#handleNext"
-                    styleClass="secondary-button"/>
-
-            <Button text="Save"
-                    onAction="#handleSave"
-                    styleClass="primary-button"/>
-
-            <Button text="Back"
-                    onAction="#handleBack"
-                    styleClass="secondary-button"/>
         </HBox>
 
-        <Label fx:id="statusLabel"
-               styleClass="status-label"/>
+        <Label text="Front" styleClass="field-label"/>
+
+        <Label text="Back" styleClass="field-label"/>
+
+            <Label text="Status" styleClass="field-label"/>
+
+
+
+        </HBox>
+
     </VBox>
 
 </VBox>

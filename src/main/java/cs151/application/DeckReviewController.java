@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -25,15 +26,15 @@ public class DeckReviewController {
     private static final List<String> STATUS_OPTIONS = List.of("New", "Learning", "Mastered");
 
     // Set by the upstream deck-list controller before the scene is shown.
-    @FXML private Label deckNameLabel;
+    @FXML private TextField deckNameField;
 
     // Filter + status
     @FXML private ComboBox<String> filterComboBox;
     @FXML private ComboBox<String> statusComboBox;
 
     // Card content
-    @FXML private TextArea questionArea;
-    @FXML private TextArea answerArea;
+    @FXML private TextArea frontTextArea;
+    @FXML private TextArea backTextArea;
 
     // Metadata
     @FXML private Label createdAtLabel;
@@ -71,7 +72,7 @@ public class DeckReviewController {
      */
     public void setDeck(String deckName) {
         this.deckName = deckName;
-        deckNameLabel.setText(deckName);
+        deckNameField.setText(deckName);
         loadAllCards();
         applyFilter();
     }
@@ -116,8 +117,8 @@ public class DeckReviewController {
         }
 
         Flashcard card = filteredCards.get(currentIndex);
-        questionArea.setText(card.getQuestion());
-        answerArea.setText(card.getAnswer());
+        frontTextArea.setText(card.getQuestion());
+        backTextArea.setText(card.getAnswer());
         statusComboBox.setValue(card.getStatus() != null ? card.getStatus() : "New");
         createdAtLabel.setText(card.getCreatedAt() != null ? card.getCreatedAt() : "—");
         lastReviewedLabel.setText(card.getLastReviewedAt() != null ? card.getLastReviewedAt() : "Never");
@@ -128,8 +129,8 @@ public class DeckReviewController {
     }
 
     private void clearCard(String message) {
-        questionArea.clear();
-        answerArea.clear();
+        frontTextArea.clear();
+        backTextArea.clear();
         statusComboBox.setValue(null);
         createdAtLabel.setText("—");
         lastReviewedLabel.setText("—");
@@ -164,8 +165,8 @@ public class DeckReviewController {
         if (filteredCards.isEmpty()) return;
 
         Flashcard card = filteredCards.get(currentIndex);
-        card.setQuestion(questionArea.getText().trim());
-        card.setAnswer(answerArea.getText().trim());
+        card.setQuestion(frontTextArea.getText().trim());
+        card.setAnswer(backTextArea.getText().trim());
         card.setStatus(statusComboBox.getValue());
         card.setLastReviewedAt(LocalDateTime.now().toString());
 

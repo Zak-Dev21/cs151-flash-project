@@ -12,6 +12,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.collections.ObservableList;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -26,11 +27,16 @@ public class ReviewDeckListController {
     @FXML private TableColumn<Deck, String> descriptionColumn;
     @FXML private TableColumn<Deck, String> createdAtColumn;
     @FXML private Label statusLabel;
+    @FXML private ObservableList<Deck> allDecks;
 
     private final DeckDatabaseRepository deckRepository = new DeckDatabaseRepository();
 
     @FXML
     public void initialize() {
+        searchField.textProperty().addListener((obs, oldVal, newVal) -> handleSearch());
+        searchField.textProperty().addListener((obs, oldVal, newVal) -> {
+            handleSearch();
+        });
         nameColumn.setCellValueFactory(c ->
                 new SimpleStringProperty(c.getValue().getName()));
 
@@ -54,6 +60,13 @@ public class ReviewDeckListController {
         });
 
         loadDecks();
+        searchField.textProperty().addListener(
+                (javafx.beans.value.ObservableValue<? extends String> obs,
+                 String oldValue,
+                 String newValue) -> {
+                    handleSearch();
+                }
+        );
     }
 
     @FXML
@@ -115,4 +128,6 @@ public class ReviewDeckListController {
         stage.setScene(scene);
         stage.show();
     }
+
+
 }
