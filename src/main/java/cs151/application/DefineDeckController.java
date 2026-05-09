@@ -12,7 +12,6 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.time.LocalDateTime;
 
 /**
@@ -33,8 +32,10 @@ public class DefineDeckController {
     @FXML
     private Label statusLabel;
 
-    // Uses SQLite repository instead of flat-file storage
-    private final DeckDatabaseRepository repository = new DeckDatabaseRepository();
+    // Programs to the DeckRepository interface (polymorphism / Repository Pattern).
+    // Swap the right-hand side for new DeckFileRepository() to switch storage
+    // without changing any other line in this controller.
+    private final DeckRepository repository = new DeckDatabaseRepository();
 
     /**
      * Saves a new deck entered by the user.
@@ -64,7 +65,7 @@ public class DefineDeckController {
             // Clear input fields after successful save
             deckNameField.clear();
             descriptionArea.clear();
-        } catch (SQLException e) {
+        } catch (Exception e) {
             statusLabel.setText("Error saving deck.");
             e.printStackTrace();
         }

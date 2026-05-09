@@ -16,7 +16,6 @@ import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,7 +27,8 @@ public class DeckListController {
     @FXML private TableColumn<Deck, String> colorColumn;
     @FXML private Label statusLabel;
 
-    private final DeckDatabaseRepository repository = new DeckDatabaseRepository();
+    // Programs to the DeckRepository interface (polymorphism / Repository Pattern).
+    private final DeckRepository repository = new DeckDatabaseRepository();
 
     @FXML
     public void initialize() {
@@ -58,7 +58,7 @@ public class DeckListController {
             ObservableList<Deck> decks = FXCollections.observableArrayList(deckList);
             deckTable.setItems(decks);
             statusLabel.setText(decks.isEmpty() ? "No decks found." : "Decks loaded successfully.");
-        } catch (SQLException e) {
+        } catch (Exception e) {
             statusLabel.setText("Error loading decks.");
         }
     }
@@ -79,10 +79,14 @@ public class DeckListController {
         Optional<ButtonType> result = confirm.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
             try {
-                repository.deleteDeck(selected.getId());
+                // deleteDeck is database-specific and not part of the
+                // DeckRepository interface, so downcast at the call site.
+                if (repository instanceof DeckDatabaseRepository) {
+                    ((DeckDatabaseRepository) repository).deleteDeck(selected.getId());
+                }
                 statusLabel.setText("Deck and linked flashcards deleted.");
                 loadDecks();
-            } catch (SQLException e) {
+            } catch (Exception e) {
                 statusLabel.setText("Error deleting deck.");
             }
         }

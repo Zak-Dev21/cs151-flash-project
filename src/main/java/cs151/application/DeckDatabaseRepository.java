@@ -7,8 +7,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DeckDatabaseRepository {
+public class DeckDatabaseRepository implements DeckRepository {
 
+    @Override
     public void saveDeck(Deck deck) throws SQLException {
         String sql = "INSERT INTO decks(name, description, color, created_at) VALUES (?, ?, ?, ?)";
 
@@ -24,6 +25,7 @@ public class DeckDatabaseRepository {
         }
     }
 
+    @Override
     public List<Deck> getAllDecks() throws SQLException {
         List<Deck> decks = new ArrayList<>();
 

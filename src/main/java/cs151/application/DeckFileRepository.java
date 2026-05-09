@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public class DeckFileRepository
+public class DeckFileRepository implements DeckRepository
 {
     private static final String FILE_NAME = "decks.txt";
     private final Path filePath;
@@ -18,6 +18,7 @@ public class DeckFileRepository
         this.filePath = Paths.get(FILE_NAME);
     }
 
+    @Override
     public void saveDeck(Deck deck) throws IOException {
         if (!Files.exists(filePath)) {
             Files.createFile(filePath);
@@ -36,6 +37,7 @@ public class DeckFileRepository
         }
     }
 
+    @Override
     public List<Deck> getAllDecks() throws IOException {
         List<Deck> decks = new ArrayList<>();
 
